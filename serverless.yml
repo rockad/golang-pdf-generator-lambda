@@ -1,0 +1,27 @@
+service: qnsls # NOTE: update this with your service name
+
+provider:
+  name: aws
+  runtime: go1.x
+  role: arn:aws:iam::168943165440:role/service-role/goLangWkhtmltox
+  stage: dev
+  region: eu-central-1
+  memorySize: 128
+  timeout: 10
+
+package:
+  exclude:
+    - ./**
+  include:
+    - bin/**   
+
+functions:
+  pdf:
+    handler: bin/pdf-gen
+    name: ${self:provider.stage}-pdf
+    events:
+      - http:
+          path: pdf
+          method: POST
+          integration: lambda
+          cors: true
