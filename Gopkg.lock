@@ -48,8 +48,29 @@
     "service/s3",
     "service/sts"
   ]
-  revision = "854f9d07a932452f1552955e127e50ba5ebb25cc"
-  version = "v1.13.56"
+  revision = "398d14696895d68a3409bb3ccb1cfe8abc2d4376"
+  version = "v1.13.57"
+
+[[projects]]
+  name = "github.com/aws/aws-xray-sdk-go"
+  packages = [
+    "header",
+    "internal/plugins",
+    "pattern",
+    "resources",
+    "strategy/ctxmissing",
+    "strategy/exception",
+    "strategy/sampling",
+    "xray"
+  ]
+  revision = "32670489212454717deeafb8da5dbb1da0299749"
+  version = "v0.9.4"
+
+[[projects]]
+  name = "github.com/cihub/seelog"
+  packages = ["."]
+  revision = "d2c6e5aa9fbfdd1c624e140287063c7730654115"
+  version = "v2.6"
 
 [[projects]]
   name = "github.com/go-ini/ini"
@@ -62,9 +83,21 @@
   packages = ["."]
   revision = "0b12d6b5"
 
+[[projects]]
+  name = "github.com/jung-kurt/gofpdf"
+  packages = ["."]
+  revision = "14c1db30737a138f8d9797cffea58783892b2fae"
+  version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/pkg/errors"
+  packages = ["."]
+  revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
+  version = "v0.8.0"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "f404c00b46b85f560402c8a2bbe7a290f3b7265dd1e3a9cdb2e9ae0431c69091"
+  inputs-digest = "a611cd031a5aecd6cdffd746373f4b4ed7e8dd6a7b3bd6f7311eb80087bb7135"
   solver-name = "gps-cdcl"
   solver-version = 1

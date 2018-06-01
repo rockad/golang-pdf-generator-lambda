@@ -1,4 +1,4 @@
-service: qnsls # NOTE: update this with your service name
+service: questionnaire # NOTE: update this with your service name
 
 provider:
   name: aws
@@ -10,18 +10,39 @@ provider:
   timeout: 10
 
 package:
+  individually: true
   exclude:
     - ./**
-  include:
-    - bin/**   
-
+      
 functions:
   pdf:
-    handler: bin/pdf-gen
-    name: ${self:provider.stage}-pdf
+    handler: bin/pdfgenerator
+    package:
+      include:
+        - bin/pdfgenerator
+        - bin/wkhtmltopdf
+    name: ${self:service}-pdf-${self:provider.stage}
     events:
       - http:
           path: pdf
           method: POST
           integration: lambda
-          cors: true
+          request:
+            template:
+              application/json: '$input.body'
+  inlinePdf:
+    handler: bin/inlinepdf
+    package:
+      include:
+        - bin/inlinepdf
+    name: ${self:service}-pdf-inline-${self:provider.stage}
+    events:
+      - http:
+          path: inlinepdf
+          method: POST
+          integration: lambda
+          request:
+            template:
+              application/json: '$input.body'
+    TracingConfig: 
+      Mode: Active
